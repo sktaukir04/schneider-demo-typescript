@@ -1,0 +1,38 @@
+.footer-container{
+    background-color:black;
+} 
+footer{
+    display: flex;
+    margin-left:  200px;
+    padding: 15px;
+    justify-content: space-evenly;
+
+}
+footer .left-footer{
+    padding: 10px;
+}
+footer .right-footer{
+    color: white;
+    margin-left: 200px;
+    margin-right: 100px;
+    padding-left: 0 20px;
+}
+footer .left-footer ul{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+footer .left-footer ul li {
+    white-space: nowrap;
+    list-style: none;
+}
+footer .left-footer ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer .left-footer ul li a:hover {
+    color: white;
+    text-decoration: underline;
+}

@@ -1,0 +1,16 @@
+{
+  "contacts": [
+    {
+      "firstname": "Taukir",
+      "lastname": "Shaikh",
+      "email": "shaikhtaukir0212@gmail.com",
+      "country": "India",
+      "city": "Mumbai",
+      "landmark": "Wadala",
+      "pincode": "400031",
+      "contact": "9699912349",
+      "password": "1234567890",
+      "id": 1702275299195
+    }
+  ]
+}

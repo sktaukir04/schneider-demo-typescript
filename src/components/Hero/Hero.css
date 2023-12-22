@@ -1,0 +1,93 @@
+.maindiv{
+    background-image: url('https://se.file.force.com/servlet/servlet.ImageServer?id=0158V00000C27ft&oid=00DA0000000abSm');
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: 100% 250px ;
+}
+.hero-content{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    gap: 20px;  
+    transform: translateY(-30%);
+    justify-content: center;
+    align-items: center;
+}
+
+.rightside{
+    background-color: white;
+    border: 1px solid rgb(234, 234, 234);
+    width: 70%;
+    z-index: 1;
+    position: relative;
+    padding: 40px 40px;
+}
+.rightside h3{
+    text-align: center;
+    margin: 19px 30px;
+    font-size: 26px;
+}
+.rightside input{
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+.rememberbox{
+    display: inline-flex;
+    justify-content: flex-start;
+    gap: 5px;
+    text-align: start;
+    align-items: center;
+}
+button{
+    margin: 5px 0;
+    padding: 14px 10px;
+    width: 100%;
+    cursor: pointer;
+}
+.nextbtn{
+    background-color: #008A16;
+    border: none;
+    color: white;
+}
+.nextbtn:hover{
+    background-color: #12a32a;
+}
+.registerbtn{
+    background-color: transparent;
+    border: 1px solid rgb(104, 104, 104);
+}
+.rightside a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #0075A3;
+}
+.leftside{
+     margin: 30px;
+}
+.leftside h1{
+    margin: 10px;
+    font-family: 'ArialRoundedMTforSE-Regular_Greek';
+    margin-bottom: 0;
+    font-size: 40px;
+    font-weight: 600;
+    padding: 20px;
+    padding-bottom: 10px;
+}
+.leftside p{
+    padding: 0 20px;
+    margin: 10px;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    color: #626469;
+    /* font-family: 'ArialRoundedMTforSE-Regular_Greek'; */
+    margin-top: 0;
+}
+input:focus{
+    outline: none;
+}
+#checkbox:hover{
+    background-color: #008A16;
+}

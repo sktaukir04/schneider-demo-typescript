@@ -1,0 +1,9 @@
+.errorhead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: var('https://upload.wikimedia.org/wikipedia/commons/d/d4/Head-office-Schneider_Electric.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

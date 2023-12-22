@@ -1,0 +1,116 @@
+.empdisplaybody {
+    width: 100vw !important;
+    outline: 1px solid black !important;
+}
+
+.empdisplaybody:nth-child(even) {
+    background-color: #ccffcc;
+}
+
+.MuiTableRow-head {
+    color: white;
+}
+
+.tableDisplay {
+    border: 1px solid black !important;
+    width: 70% !important;
+    min-width: 70% !important;
+    justify-content: center !important;
+    size: small;
+    box-shadow: 5px 15px 5px 1px black !important;
+}
+
+.logoutBtn:hover {
+    transform: scale(1.1);
+    transition: .3s;
+    animation-name: bounce;
+    animation-duration: .9s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+}
+
+.MuiTableCell-head {
+    border: 2px solid black;
+    outline: 1px solid black;
+    text-align: center !important;
+    color: white !important;
+}
+
+.MuiTableCell-sizeSmall {
+    border: 1px solid lightgray !important;
+}
+
+.tableHead {
+    color: white !important;
+}
+
+.logoutText {
+    display: none;
+    transition: .3s;
+}
+
+.logoutbtn:hover .logoutText {
+    display: block;
+    transition: all .4s;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+        box-shadow: 0px 0px 1px black;
+    }
+}
+
+.customModal {
+    border: 2px solid red;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0.7;
+    transition: all 1s;
+    backdrop-filter: blur(5px);
+}
+
+.customModal>div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    margin: auto;
+    height: fit-content;
+    transform: translateY(120%);
+    width: 400px !important;
+    border: 1px solid black;
+    background-color: aliceblue;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    opacity: 1;
+}
+
+.customModal button {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+}
+
+.cancelModal {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    font-weight: bolder;
+    cursor: pointer;
+    caret-color: green;
+    font-size: 30px;
+    transition: all .5s;
+}
+
+.cancelModal:hover {
+    color: red;
+    transform: scale(1.5) rotateY(180deg);
+}
