@@ -227,6 +227,18 @@
       "city": "Mumbai",
       "landmark": "Wadala",
       "pincode": "400031"
+    },
+    {
+      "id": 1703765387942,
+      "firstname": "test",
+      "lastname": "test",
+      "contact": "1234567722",
+      "email": "test@gmail.com",
+      "country": "test",
+      "password": "test1234",
+      "city": "testcity",
+      "landmark": "testlandmark",
+      "pincode": "40293"
     }
   ]
 }
