@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
               </Popover>
             </div>
           ) : (
-            <div><Typography>Not Logged In </Typography></div>
+            <div><Typography>Please Log In </Typography></div>
           )
         }
       </div>

@@ -20,9 +20,10 @@
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
+    box-shadow: 1px 1px 5px black;
     margin: auto;
     height: fit-content;
-    width: 400px !important;
+    width: 800px !important;
     border: 1px solid black;
     background-color: aliceblue;
     color: black !important;
@@ -37,4 +38,16 @@
     width: 100% !important;
     padding: 2px;
     padding-top: 5px !important;
+}
+.actions{
+    border-radius: 10px;
+    box-shadow: none;
+    margin: auto;
+    height: fit-content;
+    width: 800px !important;
+    border:none;
+    background-color: aliceblue;
+    padding: 3px !important;
+    backdrop-filter: none !important;
+    opacity: 1;
 }
