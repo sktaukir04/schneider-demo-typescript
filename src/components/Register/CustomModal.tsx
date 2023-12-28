@@ -14,7 +14,7 @@ type Props = {
 
 const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props) => {
 
-  const [isEditable, setIsEditable] = useState(false);
+  const [isEditable, setIsEditable] = useState(true);
   const{editData,deleteData}=useContext(multiStepContext);
 
 
@@ -28,14 +28,14 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
         <div>
           <span className='cancelModal' onClick={() => setModalOpen(false)}>&times;</span>
 
-          <TextField className="filled-basic" value={modalData?.firstname} contentEditable={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, firstname: e.target.value }))} label="First Name" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.lastname} contentEditable={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, lastname: e.target.value }))} label="Last Name" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.email} contentEditable={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, email: e.target.value }))} label="Email" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.country} contentEditable={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, country: e.target.value }))} label="Country" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.city} contentEditable={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, city: e.target.value }))} label="City" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.landmark} contentEditable={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, landmark: e.target.value }))} label="Landmark" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.pincode} contentEditable={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, pincode: e.target.value }))} label="Pincode" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.contact} contentEditable={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, contact: e.target.value }))} label="Contact" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.firstname} disabled={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, firstname: e.target.value }))} label="First Name" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.lastname} disabled={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, lastname: e.target.value }))} label="Last Name" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.email} disabled={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, email: e.target.value }))} label="Email" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.country} disabled={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, country: e.target.value }))} label="Country" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.city} disabled={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, city: e.target.value }))} label="City" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.landmark} disabled={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, landmark: e.target.value }))} label="Landmark" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.pincode} disabled={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, pincode: e.target.value }))} label="Pincode" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.contact} disabled={isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, contact: e.target.value }))} label="Contact" variant="filled" />
 
         </div>
         <div className="actions" style={{ display: 'flex', flexDirection: 'row',gap:'10px', width: 'fit-content', padding: '10px', margin: '10px' }}>
@@ -49,7 +49,7 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
             console.log(modalData);
             deleteData(modalData?.id)
             }}>
-            Secondary
+            Delete
           </Button>
         </div>
       </Modal >
