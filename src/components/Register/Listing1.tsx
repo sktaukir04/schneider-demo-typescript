@@ -10,9 +10,19 @@ import { multiStepContext } from './StepContext';
 import CustomModal from './CustomModal';
 import { GetApp } from '@material-ui/icons';
 import * as XLSX from 'xlsx';
+import {makeStyles} from '@material-ui/core';
 
 
 type Props = {}
+
+const useStyles = makeStyles((theme:any) => ({
+    dataListContainer: {
+      height: '70vh',
+      margin: theme.spacing(2), 
+      overflowX: 'hidden',
+      overflowY:'scroll'
+    },
+  }));
 
 const Listing1 = (props: Props) => {
     const navigate = useNavigate()
@@ -21,6 +31,7 @@ const Listing1 = (props: Props) => {
     const [input, setInput] = useState('');
     const [toogleInput, setToggleInput] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const classes = useStyles()
 
 
     const { setCurrentUser,modalData,setModalData } = useContext(multiStepContext);
@@ -133,7 +144,7 @@ const Listing1 = (props: Props) => {
 
             <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen} modalData={modalData} setModalData={setModalData}/>
 
-            <div className='newList' style={{ height: '70vh' }}>
+            <div className={`newList ${classes.dataListContainer}`} style={{ height: '70vh' }} >
                 <DataGrid
                     rows={filteredDatas}
                     onCellClick={handleCellClick}

@@ -122,29 +122,32 @@
 }
 
 
-.newList {
+/* .newList {
     height: 70vh;
     width: 100%;
     display: flex;
     flex-direction: column;
-  }
+  } */
   
-  .MuiDataGrid-root {
+  /* .MuiDataGrid-root {
     flex-grow: 1;
   }
   
   .MuiDataGrid-main {
-    height: calc(100% - 48px); /* Adjust the height as needed */
+    height: calc(100% - 48px); 
   }
   
   .MuiDataGrid-footerContainer {
     position: sticky;
     bottom: 0;
     background-color: white;
-  }
+  } */
   
   
-  .green-background {
+  /* .green-background {
+    background-color: lightgreen;
+  } */
+  
+  .MuiDataGrid-columnHeaderWrapper{
     background-color: lightgreen;
   }
-  
