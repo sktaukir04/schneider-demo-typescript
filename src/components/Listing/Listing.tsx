@@ -54,7 +54,7 @@ const Listing: React.FC = () => {
     }, 1500);
   })
 
-  const loadUserData = async (start: number = 0, end: number = 10, increase: any = 1, optType?: any, filterorSortValue?: any) => {
+  const loadUserData = async (start: number = 0, end: number = 4, increase: any = 1, optType?: any, filterorSortValue?: any) => {
     switch (optType) {
       case 'search':
         setOperation(optType);
@@ -113,6 +113,9 @@ const Listing: React.FC = () => {
 
 
 
+
+
+
   useEffect(() => {
     loadUserData(0, 4, 0);
   }, []);
@@ -146,16 +149,16 @@ const Listing: React.FC = () => {
           <Button disabled>Prev</Button>
           <label style={{ flex: 1 }} htmlFor="">1</label>
           <Button endIcon={<ArrowForwardRounded />} variant='outlined' color='primary' onClick={() => {
-            loadUserData(4, 8, 1, operation, sortFilterValue); console.log(currentPage);
+            loadUserData(4, 8, 1, operation, sortFilterValue); console.log("CurrentPage is " + currentPage);
           }}>Next</Button>
         </div>
       )
     } else if (currentPage <= pageLimit - 1 && empData.length < pageLimit) {
       return (
         <div style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto', width: '400px', alignItems: 'center', gap: '20px', marginTop: '30px' }}>
-          <Button startIcon={<ArrowBackIcon />} variant='outlined' color='primary' onClick={() => { loadUserData((currentPage - 1) * 4, currentPage * 4, -1, operation, sortFilterValue); console.log(currentPage) }}>Prev</Button>
+          <Button startIcon={<ArrowBackIcon />} variant='outlined' color='primary' onClick={() => { loadUserData((currentPage - 1) * 4, currentPage * 4, -1, operation, sortFilterValue); console.log("Current Page is " + currentPage + "and pagelimit is  " + pageLimit) }}>Prev</Button>
           <label htmlFor="">{currentPage + 1}</label>
-          <Button endIcon={<ArrowForwardRounded />} variant='outlined' color='primary' onClick={() => { loadUserData((currentPage + 1) * 4, (currentPage + 2) * 4, 1, operation, sortFilterValue); console.log(currentPage) }}>Next</Button>
+          <Button endIcon={<ArrowForwardRounded />} variant='outlined' color='primary' onClick={() => { loadUserData((currentPage + 1) * 4, (currentPage + 2) * 4, 1, operation, sortFilterValue); console.log("Current Page is " + currentPage) }}>Next</Button>
         </div>
       )
     }
@@ -163,7 +166,7 @@ const Listing: React.FC = () => {
       return (
         <>
           <div style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto', width: '400px', alignItems: 'center', gap: '20px', marginTop: '30px' }}>
-            <Button startIcon={<ArrowBackIcon />} variant='outlined' color='primary' onClick={() => { loadUserData((currentPage - 1) * 4, currentPage * 4, -1, operation, sortFilterValue); console.log(currentPage) }}>Prev</Button>
+            <Button startIcon={<ArrowBackIcon />} variant='outlined' color='primary' onClick={() => { loadUserData((currentPage - 1) * 4, currentPage * 4, -1, operation, sortFilterValue); console.log("Current page is " + currentPage + "and pagelimit is  " + pageLimit) }}>Prev</Button>
             <label htmlFor="">{currentPage + 1}</label>
             <Button disabled>Next</Button>
           </div>
@@ -172,6 +175,8 @@ const Listing: React.FC = () => {
     }
 
   }
+
+
 
 
   useEffect(() => {
@@ -242,7 +247,9 @@ const Listing: React.FC = () => {
                 sortOptions.map((item, index) => {
                   return (
                     <>
-                      <option style={{ fontSize: '15px', textAlign: 'start', fontWeight: 'bold' }} key={index} value={item}>{item}</option>
+                      <option style={{ fontSize: '15px', textAlign: 'start', fontWeight: 'bold' }} key={index} value={item}>
+                        {item}
+                      </option>
                     </>
                   )
                 })
@@ -290,7 +297,7 @@ const Listing: React.FC = () => {
           }} style={{ margin: '10px' }}>Export</Button>
         </div>
       </Container>
-      <TableContainer  style={{ display: 'flex', justifyContent: 'center' }}>
+      <TableContainer style={{ display: 'flex', justifyContent: 'center' }}>
         <Table className='tableDisplay' size='small'>
           <TableHead className='tableHead'>
             <TableRow className='tableHead' style={{ backgroundColor: 'rgb(101 178 67)', color: 'white', textAlign: 'center' }}>
@@ -316,7 +323,7 @@ const Listing: React.FC = () => {
                   <TableCell>{data.id}</TableCell>
                   <TableCell>{data.firstname}</TableCell>
                   <TableCell>{data.lastname}</TableCell>
-                  <TableCell>{data.contact}</TableCell>
+                  <TableCell style={{whiteSpace:'nowrap'}}>{data.contact}</TableCell>
                   <TableCell>{data.email}</TableCell>
                   <TableCell>{data.country}</TableCell>
                   {/* <TableCell>{data.password}</TableCell> */}
@@ -340,6 +347,7 @@ const Listing: React.FC = () => {
         {/* <TablePagination component={'children'}/> */}
       </TableContainer>
       <div>{renderPagination()}</div>
+
       <br />
 
 

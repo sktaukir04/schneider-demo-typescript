@@ -8,7 +8,7 @@ const ThirdStep: React.FC = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserData((prevUserData:any) => ({ ...prevUserData, [name]: value }));
+    setUserData((prevUserData: any) => ({ ...prevUserData, [name]: value }));
   };
 
   return (
@@ -19,7 +19,7 @@ const ThirdStep: React.FC = () => {
           margin='normal'
           fullWidth
           value={userData?.city}
-          onChange={(e:any) => handleInputChange(e)}
+          onChange={(e: any) => handleInputChange(e)}
           variant='outlined'
           color='secondary'
           name='city'
@@ -31,7 +31,7 @@ const ThirdStep: React.FC = () => {
           margin='normal'
           fullWidth
           value={userData?.landmark}
-          onChange={(e:any) => handleInputChange(e)}
+          onChange={(e: any) => handleInputChange(e)}
           variant='outlined'
           color='secondary'
           name='landmark'
@@ -44,7 +44,7 @@ const ThirdStep: React.FC = () => {
           margin='normal'
           fullWidth
           value={userData?.pincode}
-          onChange={(e:any) => handleInputChange(e)}
+          onChange={(e: any) => handleInputChange(e)}
           variant='outlined'
           color='secondary'
           name='pincode'
@@ -52,11 +52,11 @@ const ThirdStep: React.FC = () => {
       </div>
       <div style={{ display: 'flex', gap: '10px', width: '70%' }}>
         <Button variant='contained' onClick={() => {
-            setCurrentStep(2)
-           }} color='secondary'>
+          setCurrentStep(2)
+        }} color='secondary'>
           Back
         </Button>
-        <Button variant='contained' onClick={()=>{
+        <Button variant='contained' onClick={() => {
           submitData()
         }} color='primary'>
           Submit

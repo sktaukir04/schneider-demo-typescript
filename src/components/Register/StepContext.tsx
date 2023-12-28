@@ -29,8 +29,12 @@ interface MultiStepContext {
   setIsError:any;
   isLoggedIn: boolean;
   setIsLoggedIn: any;
+  currentUser:any,
+  setCurrentUser:any
   authData: any;
   setAuthData: () => any;
+  modalData:any;
+  setModalData:any;
 }
 type HeadingProp = {
   children: React.ReactNode;
@@ -46,16 +50,19 @@ const StepContext = (props: HeadingProp) => {
   const [isLoggedIn, setIsLoggedIn] = useState(Boolean);
   const [authData, setAUthData] = useState<UserData[]>();
   const [allData, setAllDAta] = useState([])
-  const [isError,setIsError]=useState(false)
+  const [isError,setIsError]=useState(false);
+  const [currentUser,setCurrentUser]=useState<UserData>();
+  const [modalData,setModalData]=useState({});
 
   const editData = (id: number) => {
-    console.log(userData);     
-    if (userData?.firstname) {
+    // console.log(userData);     
+    if (modalData) {
       axios
-        .put(`http://localhost:3001/contacts/${id}`, userData)
+        .put(`http://localhost:3001/contacts/${id}`, modalData)
         .then((res) => {
           alert('Updated Successfully...!');
           navigate('/listing');
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     } else {
@@ -68,7 +75,7 @@ const StepContext = (props: HeadingProp) => {
       fetch(`http://localhost:3001/contacts/${id}`, {
         method: 'DELETE',
       })
-        .then((data) => alert('Removed Successfully'))
+        .then((data) => alert('Removed Successfully'+data))
         .catch((err) => {
           console.log(err);
           window.location.reload();
@@ -79,23 +86,6 @@ const StepContext = (props: HeadingProp) => {
     }
   };
 
-  // const submitData = () => {
-  //   if (userData?.firstname && userData.email && userData.password) {
-  //     setFinalData((prevFinalData) => [...prevFinalData, userData]);
-  //     axios.post('http://localhost:3001/contacts', userData);
-  //     setUserData({ firstname: '', lastname: '', email: '', country: '', city: '', landmark: '', pincode: '', contact: '', password: '' });
-  //     setCurrentStep(1);
-  //     navigate('/listing');
-  //     // window.location.reload();
-  //   } else {
-  //     window.alert('Please enter all the fields..!');
-  //   }
-  // };
-
-  // function getAllData(){
-  //   return axios.get("http://localhost:3001/contacts").catch((err)=>console.log("Error fetching data .....!"+err)
-  //   )
-  // }
 
   const fetchAllData: any = async () => {
     return await fetch('http://localhost:3001/contacts')
@@ -117,7 +107,7 @@ const StepContext = (props: HeadingProp) => {
                 sessionStorage.setItem('email', userData.email);
                 if (!alreadyExists) {
                   console.log(alreadyExists);
-                  axios.post('http://localhost:3001/contacts', userData).catch((err)=>console.log("You ahve a new Error : "+err)
+                  axios.post('http://localhost:3001/contacts', userData).catch((err)=>console.log("You have a new Error : "+err)
                   );
                   sessionStorage.setItem('email', userData.email)
                   setUserData({ firstname: '', lastname: '', email: '', country: '', city: '', landmark: '', pincode: '', contact: '', password: '' });
@@ -152,6 +142,10 @@ const StepContext = (props: HeadingProp) => {
     isError,
     setIsError,
     authData,
+    currentUser,
+    modalData,
+    setModalData,
+    setCurrentUser,
     setAuthData: function () {
       throw new Error('Function not implemented.');
     }

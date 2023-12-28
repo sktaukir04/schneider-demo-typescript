@@ -1,5 +1,6 @@
 nav{
     display: flex;
-    justify-content: flex-start;
+    max-width: 95vw;
+    justify-content: space-between;
     align-items: center;
 }

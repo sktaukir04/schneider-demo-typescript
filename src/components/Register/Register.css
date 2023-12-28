@@ -35,3 +35,26 @@
     color: white;
     text-decoration: underline;
 }
+
+@media screen and (max-width:800px) {
+    .app-header{
+        display: flex;
+        flex-wrap: wrap;
+        min-height: fit-content;
+        align-items: center;
+        min-width: 700px !important;
+        flex-direction: column;
+        font-size: calc(10px + 2vmin);
+    }
+    .center-stepper{
+        display: flex;
+        margin: 0;
+        padding: 0;
+        min-width: 100%;
+        justify-content: center;
+        width: 100vw !important;
+    }
+    .main_form{
+        width: 700px !important;
+    }
+}

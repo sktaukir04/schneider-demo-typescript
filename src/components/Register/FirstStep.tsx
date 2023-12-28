@@ -3,7 +3,7 @@ import { Button, TextField } from '@material-ui/core';
 import { multiStepContext } from './StepContext';
 
 const FirstStep = () => {
-  const { setCurrentStep, userData, setUserData,isError,setIsError } = useContext(multiStepContext);
+  const { setCurrentStep, userData, setUserData, isError, setIsError } = useContext(multiStepContext);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -52,13 +52,13 @@ const FirstStep = () => {
         />
       </div>
       <div style={{ width: '70%' }}>
-        <Button variant='contained' onClick={() =>{
-          if (typeof userData?.firstname==='number') {
+        <Button variant='contained' onClick={() => {
+          if (typeof userData?.firstname === 'number') {
             alert("Enter data to proceed")
-          }else{
+          } else {
             setCurrentStep(2);
           }
-           }} color='primary'>
+        }} color='primary'>
           Next
         </Button>
       </div>

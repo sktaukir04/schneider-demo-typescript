@@ -36,3 +36,10 @@ footer .left-footer ul li a:hover {
     color: white;
     text-decoration: underline;
 }
+
+@media screen and (max-width:700px) {
+    .footer-container{
+        width: 700px;
+        height: fit-content;
+    }
+}

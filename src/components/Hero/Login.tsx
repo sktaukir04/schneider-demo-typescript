@@ -7,11 +7,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
 
-const Hero = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [datas, setDatas] = useState([]);
 
   const { setIsLoggedIn } = useContext(multiStepContext);
 
@@ -31,50 +31,30 @@ const Hero = () => {
     }
     return result;
   }
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (validate()) {
-      fetch("http://localhost:3001/contacts/").then(res => res.json()).then((datas) => {
-        var isFound = false;
-        datas.forEach((data: any) => {
-          if (data.email === email && data.password === password) {
-            console.log("Success....!");
-            isFound = true;
-            sessionStorage.setItem('email', email)
-            setIsLoggedIn(true);
-            navigate('/listing');
-          } else {
-            setOpenSnackbar(true)
-            console.log("Not Found");
-          }
-        });
-        if (!isFound) {
-          <Snackbar
-            message="Invalid Username or Password"
-            open={openSnackbar}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            action={
-              <React.Fragment>
-                <Button color="secondary" size="small" onClick={() => setOpenSnackbar(false)}>
-                  UNDO
-                </Button>
-                <IconButton size="small" aria-label="close" color="inherit" onClick={() => setOpenSnackbar(false)}>
-                  <CloseIcon fontSize="small" />
-                </IconButton>
-              </React.Fragment>
-            }
-            onClose={() => setOpenSnackbar(false)}
-          />
-          alert("Invalid Username or Password...!")
-        }
 
-      }).catch((err) => console.log("Login Failed due to - " + err.message))
-      // console.log("Proceed to login");
+    if (validate()) {
+      try {
+        const response = await fetch("http://localhost:3001/contacts/");
+        const datas = await response.json();
+
+        const user = datas.find((data: any) => data.email === email && data.password === password);
+
+        if (user) {
+          console.log("Success....!");
+          sessionStorage.setItem('userData', JSON.stringify(user));
+          setIsLoggedIn(true);
+          navigate('/listing');
+        } else {
+          console.log("Not Found");
+        }
+      } catch (err:any) {
+        console.error("Login Failed due to - ", err.message);
+      }
     }
   }
+
   return (
     <div>
       <div className='maindiv'>
@@ -98,7 +78,7 @@ const Hero = () => {
             <button type='submit' className='nextbtn'>Next</button>
           </form>
           <p>or continue with</p>
-          <a href="#" title='Schneider-Electric Employee Login' style={{border:'1px solid black',width:'fit-content',borderRadius:'50%',padding:'2px'}} ><img style={{objectFit:'contain',padding:'2px'}} src={'https://companieslogo.com/img/orig/SCHNEIDER.NS-499a33a2.png?t=1604232067'} width={'30px'} alt="logo" /></a>
+          <a href="#" title='Schneider-Electric Employee Login' style={{ border: '0px solid black', width: 'fit-content', borderRadius: '50%', padding: '2px' }} ><img style={{ objectFit: 'contain', padding: '2px' }} src={'https://companieslogo.com/img/orig/SCHNEIDER.NS-499a33a2.png?t=1604232067'} width={'30px'} alt="logo" /></a>
           <div className='newText' style={{ fontWeight: 'bold' }}>New to Schneider Electric?</div>
           <button className='registerbtn' onClick={() => navigate('/register')}>Register</button><br />
           <p style={{ fontStyle: 'normal', color: 'gray', fontSize: '15px', marginTop: '5px' }}>We process account registration information and connection logs for authentication and application access management.</p>
@@ -109,4 +89,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default Login
