@@ -193,18 +193,6 @@
       "id": 1703565890651
     },
     {
-      "firstname": "Camila",
-      "lastname": "Fernandez",
-      "email": "camila.fernandez@example.com",
-      "country": "Argentina",
-      "city": "Buenos Aires",
-      "landmark": "La Casa Rosada",
-      "pincode": "C1073AAB",
-      "contact": "54-11-1234-5678",
-      "password": "camila789",
-      "id": 1703565890652
-    },
-    {
       "firstname": "Rahul",
       "lastname": "Gupta",
       "email": "rahul.gupta@example.com",
@@ -227,18 +215,6 @@
       "city": "Mumbai",
       "landmark": "Wadala",
       "pincode": "400031"
-    },
-    {
-      "id": 1703765387942,
-      "firstname": "test",
-      "lastname": "test",
-      "contact": "1234567722",
-      "email": "test@gmail.com",
-      "country": "test",
-      "password": "test1234",
-      "city": "testcity",
-      "landmark": "testlandmark",
-      "pincode": "40293"
     }
   ]
 }

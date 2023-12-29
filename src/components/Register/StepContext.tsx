@@ -78,9 +78,9 @@ const StepContext = (props: HeadingProp) => {
         .then((data) => alert('Removed Successfully'+data))
         .catch((err) => {
           console.log(err);
+        });
           window.location.reload();
           navigate('/listing');
-        });
     } else {
       // Do nothing on cancel
     }

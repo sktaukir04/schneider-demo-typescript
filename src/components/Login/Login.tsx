@@ -6,10 +6,19 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
+interface Data{
+  email : string;
+  password : string;
+}
 
 const Login = () => {
+
+  const [data, setData] = useState<Data>({
+    email : '',
+    password : ''
+  })
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('')
   const [datas, setDatas] = useState([]);
 

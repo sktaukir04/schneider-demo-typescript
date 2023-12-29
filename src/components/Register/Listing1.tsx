@@ -31,12 +31,12 @@ const Listing1 = (props: Props) => {
     const [input, setInput] = useState('');
     const [toogleInput, setToggleInput] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
-    // const [uploadData,setUploadData]=useState<any>([])
+    const [selectedRows, setSelectedRows] = useState<any[]>([]);
     const classes = useStyles()
 
 
 
-    const { setCurrentUser, modalData, setModalData } = useContext(multiStepContext);
+    const { setCurrentUser, modalData,deleteData, setModalData } = useContext(multiStepContext);
     const fetchData = async () => {
         const { data } = await axios.get(`http://localhost:3001/contacts`);
         setData(data)
@@ -109,22 +109,6 @@ const Listing1 = (props: Props) => {
 
     }
 
-    // const handleImportFile = (e: any) => {
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.onload=(e)=>{
-    //             const data = e.target?.result;
-    //             const workBook = XLSX.read(data,{type:'binary'});
-    //             const sheetName = workBook.SheetNames[0];
-    //             const worksheet = workBook.Sheets[sheetName];
-    //             const jsonData = XLSX.utils.sheet_to_json(worksheet);
-    //             console.log(jsonData);
-    //             navigate('/importedData',{ state: { data: jsonData } }) 
-    //         }
-    //         reader.readAsBinaryString(file);
-    //     }
-    // }
 
     const handleImportFile = (e: any) => {
         const file = e.target.files[0];
@@ -143,6 +127,11 @@ const Listing1 = (props: Props) => {
         }
     };
     
+    const handleMultiSelect = (rows:any)=>{
+        setSelectedRows(rows);
+        console.log(selectedRows);
+        deleteData(rows)
+    }
 
     return (
         <>
@@ -198,7 +187,7 @@ const Listing1 = (props: Props) => {
 
             <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen} modalData={modalData} setModalData={setModalData} />
 
-            <div className={`newList ${classes.dataListContainer}`} style={{ height: '70vh' }} >
+            <div className={`newList ${classes.dataListContainer}`} style={{ height: '400' }} >
                 <DataGrid
                     rows={filteredDatas}
                     onCellClick={handleCellClick}
@@ -209,14 +198,18 @@ const Listing1 = (props: Props) => {
                     autoHeight
                     pageSize={pageSize}
                     headerHeight={50}
+                    onSelectionModelChange={handleMultiSelect}
+                    checkboxSelection
                     onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                     rowsPerPageOptions={[5, 10, 15, 20]}
                     pagination
                     disableSelectionOnClick
+              
                 />
             </div>
         </>
     )
 }
+
 
 export default Listing1
