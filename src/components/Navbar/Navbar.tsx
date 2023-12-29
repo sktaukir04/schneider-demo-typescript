@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import './Navbar.css';
 import { multiStepContext } from '../Register/StepContext';
 import { Button, IconButton, Menu, MenuItem, Popover, Typography } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const Navbar: React.FC = () => {
@@ -23,8 +23,7 @@ const Navbar: React.FC = () => {
     if (sessionVal) {
       try {
         const userData = JSON.parse(sessionVal);
-        setCurrentUser(userData)
-        // console.log(userData);
+        setCurrentUser(userData);
         setIsLoggedIn(true)
       } catch (error) {
         console.error("Error parsing JSON:", error);
@@ -47,12 +46,12 @@ const Navbar: React.FC = () => {
         {
           isLoggedIn ? (
             <div style={{ display: 'flex', alignItems: 'center' }}>
-            
-              <Typography style={{ whiteSpace: 'nowrap',color:'green',fontWeight:'bold' }}> Welcome {currentUser?.firstname}</Typography>
-              <IconButton style={{width:'40px'}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+
+              <Typography style={{ whiteSpace: 'nowrap', color: 'green', fontWeight: 'bold' }}> Welcome {currentUser?.firstname}</Typography>
+              <IconButton style={{ width: '40px' }} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 <AccountCircleIcon />
               </IconButton>
-              
+
               <Popover
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -78,7 +77,7 @@ const Navbar: React.FC = () => {
               </Popover>
             </div>
           ) : (
-            <div><Typography>Please Log In </Typography></div>
+            <div><Link style={{textDecoration:'none'}} to={'/'}><Typography style={{marginRight:'20px'}}>Please Log In </Typography></Link></div>
           )
         }
       </div>

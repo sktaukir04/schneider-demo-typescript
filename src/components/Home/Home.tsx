@@ -1,11 +1,11 @@
 import React from 'react';
-import Hero from '../Login/Login';
+import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 
 const Home: React.FC = () => {
   return (
     <div>
-      <Hero />
+      <Login />
       <Footer />
     </div>
   );

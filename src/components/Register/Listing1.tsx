@@ -3,26 +3,26 @@ import React, { useContext, useEffect, useState } from 'react'
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
 import '../Listing/Listing.css'
 import { useNavigate } from 'react-router-dom';
-import { IconButton, TextField } from '@material-ui/core';
+import { IconButton, TextField,Slide } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import { multiStepContext } from './StepContext';
 import CustomModal from './CustomModal';
 import { GetApp } from '@material-ui/icons';
 import * as XLSX from 'xlsx';
-import {makeStyles} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 
 type Props = {}
 
-const useStyles = makeStyles((theme:any) => ({
+const useStyles = makeStyles((theme: any) => ({
     dataListContainer: {
-      height: '70vh',
-      margin: theme.spacing(2), 
-      overflowX: 'hidden',
-      overflowY:'scroll'
+        height: '70vh',
+        margin: theme.spacing(2),
+        overflowX: 'hidden',
+        overflowY: 'scroll'
     },
-  }));
+}));
 
 const Listing1 = (props: Props) => {
     const navigate = useNavigate()
@@ -34,7 +34,7 @@ const Listing1 = (props: Props) => {
     const classes = useStyles()
 
 
-    const { setCurrentUser,modalData,setModalData } = useContext(multiStepContext);
+    const { setCurrentUser, modalData, setModalData } = useContext(multiStepContext);
     const fetchData = async () => {
         const { data } = await axios.get(`http://localhost:3001/contacts`);
         setData(data)
@@ -97,22 +97,24 @@ const Listing1 = (props: Props) => {
         const confrimed = window.confirm("Download Data ?")
         let ws;
         if (confrimed) {
-          ws = XLSX.utils.json_to_sheet(datas)
-          const wb = XLSX.utils.book_new();
-          XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-          XLSX.writeFile(wb, `${fileName}.xlsx`);
+            ws = XLSX.utils.json_to_sheet(datas)
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, `${fileName}.xlsx`);
         } else {
-        //   ws = XLSX.utils.json_to_sheet(data)
+            //   ws = XLSX.utils.json_to_sheet(data)
         }
 
-      }
+    }
 
 
     return (
         <>
-            <div className="input" style={{width:'90vw',margin:'10px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '2px' }}>
+            <div className="input" style={{ width: '90vw', margin: '10px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '2px' }}>
                 {toogleInput && (
+                    <Slide direction='left' in={toogleInput} mountOnEnter unmountOnExit>
                     <TextField
+                    style={{maxWidth:'200px'}}
                         label="Search Data"
                         value={input}
                         onChange={(e: any) => setInput(e.target.value)}
@@ -128,13 +130,14 @@ const Listing1 = (props: Props) => {
                             ),
                         }}
                     />
+                    </Slide>
                 )}
                 {!input && (
                     <>
                         <IconButton type='submit' style={{ width: '40px' }}
                             onClick={() => { setInput(''); setToggleInput(!toogleInput) }}><SearchIcon />
                         </IconButton>
-                        <IconButton onClick={()=>{exportToExcel(datas,"Employee List")}} style={{ width: '40px' }}>
+                        <IconButton onClick={() => { exportToExcel(datas, "Employee List") }} style={{ width: '40px' }}>
                             <GetApp />
                         </IconButton>
                     </>
@@ -142,7 +145,7 @@ const Listing1 = (props: Props) => {
                 }
             </div>
 
-            <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen} modalData={modalData} setModalData={setModalData}/>
+            <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen} modalData={modalData} setModalData={setModalData} />
 
             <div className={`newList ${classes.dataListContainer}`} style={{ height: '70vh' }} >
                 <DataGrid

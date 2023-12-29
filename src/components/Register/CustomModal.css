@@ -60,3 +60,7 @@
 .modal_text_fields .cancelModal{
     margin: 10px;
 }
+.deleteClass{
+    border: 2px solid red !important;
+    box-shadow: 5px 5px 5px red !important;
+}

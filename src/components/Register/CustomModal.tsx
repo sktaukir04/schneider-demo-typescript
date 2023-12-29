@@ -5,6 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import './CustomModal.css'
 import { multiStepContext } from './StepContext';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 type Props = {
   modalOpen: boolean,
   setModalOpen: any,
@@ -16,16 +17,18 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
 
   const [isEditable, setIsEditable] = useState(false);
   const { editData, deleteData } = useContext(multiStepContext);
+  const [deleteClass, setDeleteClass] = useState(false)
+
 
 
   return (
     <div className='modal-container'>
-      <Modal isOpen={modalOpen} className='custom-modal'
+      <Modal isOpen={modalOpen} className={`custom-modal ${deleteClass ? 'deleteClass' : ''} `}
         onRequestClose={() => setModalOpen(false)}
         ariaHideApp={false}
         contentLabel="Custom Modal">
         <h3>Data for <span style={{ color: 'red' }}>{modalData?.id}</span></h3>
-        <div className='modal_text_fields'>
+        <div className={`modal_text_fields ${deleteClass ? 'deleteClass' : ''}`}>
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <span style={{ textAlign: 'left' }}>
               {isEditable && "Edit the fields"}
@@ -44,18 +47,28 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
 
         </div>
         <div className="actions" style={{ display: 'flex', flexDirection: 'row', gap: '10px', width: 'fit-content', padding: '10px', margin: '10px' }}>
-          <Button startIcon={<EditIcon />} color='primary' variant='contained' onClick={() => {
-            setIsEditable(!isEditable)
-            // editData(modalData?.id)
-          }}>
-            {isEditable ? "Update" : "Edit"}
-          </Button>
           {
-            isEditable?(
-              <Button onClick={()=>setIsEditable(!isEditable)}>Cancel</Button>
-            ):(
+            isEditable ? (
+              <Button startIcon={<DoneOutlineIcon />} color='primary' variant='contained' onClick={() => {
+                setIsEditable(!isEditable)
+                editData(modalData?.id)
+              }}>
+                Update
+              </Button>
+            ) : (
+              <Button startIcon={<EditIcon />} variant='contained' color='primary' onClick={() => {
+                setIsEditable(!isEditable)
+              }}>Edit</Button>
+            )
+          }
+
+          {
+            isEditable ? (
+              <Button onClick={() => setIsEditable(!isEditable)}>Cancel</Button>
+            ) : (
               <Button endIcon={<DeleteIcon />} variant="contained" color="secondary" onClick={() => {
                 console.log(modalData);
+                setDeleteClass(!deleteClass);
                 deleteData(modalData?.id)
               }}>
                 Delete

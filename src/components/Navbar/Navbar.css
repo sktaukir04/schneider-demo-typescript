@@ -1,6 +1,7 @@
 nav{
     display: flex;
-    max-width: 95vw;
+    max-width: 100vw;
+    background-color: rgb(246, 243, 243);
     justify-content: space-between;
     align-items: center;
 }
