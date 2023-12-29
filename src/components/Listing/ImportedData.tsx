@@ -25,7 +25,7 @@ const ImportedData = (props: Props) => {
 
     return (
         <div style={{}}>
-            Imported Data from File <span style={{color:'red'}}>{file?.name}</span> 
+            Imported Data from File <span style={{ color: 'red' }}>{file?.name}</span>
             <DataGrid
                 rows={uploadData}
                 columns={columns}
