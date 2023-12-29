@@ -13,10 +13,12 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [datas, setDatas] = useState([]);
 
-  const { setIsLoggedIn } = useContext(multiStepContext);
+  const { setIsLoggedIn,setUserData,setCurrentStep } = useContext(multiStepContext);
 
   useEffect(() => {
     sessionStorage.clear();
+    setUserData([]);
+    setCurrentStep(1)
   }, [])
 
   const validate = () => {

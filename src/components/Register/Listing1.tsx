@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { DataGrid, GridColDef } from '@material-ui/data-grid';
 import '../Listing/Listing.css'
 import { useNavigate } from 'react-router-dom';
-import { IconButton, TextField,Slide } from '@material-ui/core';
+import { IconButton, TextField, Slide } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import { multiStepContext } from './StepContext';
 import CustomModal from './CustomModal';
-import { GetApp } from '@material-ui/icons';
+import { CloudUploadOutlined, GetApp } from '@material-ui/icons';
 import * as XLSX from 'xlsx';
 import { makeStyles } from '@material-ui/core';
 
@@ -31,7 +31,9 @@ const Listing1 = (props: Props) => {
     const [input, setInput] = useState('');
     const [toogleInput, setToggleInput] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    // const [uploadData,setUploadData]=useState<any>([])
     const classes = useStyles()
+
 
 
     const { setCurrentUser, modalData, setModalData } = useContext(multiStepContext);
@@ -63,7 +65,7 @@ const Listing1 = (props: Props) => {
             (value) => typeof value === 'string' && value.toLowerCase().includes(input.toLowerCase())
         )
     );
-    const columns: GridColDef[] = datas.length > 0 ? [
+     const columns: GridColDef[] = datas.length > 0 ? [
         { field: 'id', headerName: 'ID', width: 70 },
         ...Object.keys(datas[0])
             .filter((key) => key !== 'ID' && key !== 'password')
@@ -107,38 +109,87 @@ const Listing1 = (props: Props) => {
 
     }
 
+    // const handleImportFile = (e: any) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onload=(e)=>{
+    //             const data = e.target?.result;
+    //             const workBook = XLSX.read(data,{type:'binary'});
+    //             const sheetName = workBook.SheetNames[0];
+    //             const worksheet = workBook.Sheets[sheetName];
+    //             const jsonData = XLSX.utils.sheet_to_json(worksheet);
+    //             console.log(jsonData);
+    //             navigate('/importedData',{ state: { data: jsonData } }) 
+    //         }
+    //         reader.readAsBinaryString(file);
+    //     }
+    // }
+
+    const handleImportFile = (e: any) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const data = event.target?.result;
+                const workBook = XLSX.read(data, { type: 'binary' });
+                const sheetName = workBook.SheetNames[0];
+                const worksheet = workBook.Sheets[sheetName];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet);                
+                navigate('/importedData', { state: { data: jsonData,events:file} });
+            };
+    
+            reader.readAsBinaryString(file);
+        }
+    };
+    
 
     return (
         <>
             <div className="input" style={{ width: '90vw', margin: '10px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '2px' }}>
                 {toogleInput && (
                     <Slide direction='left' in={toogleInput} mountOnEnter unmountOnExit>
-                    <TextField
-                    style={{maxWidth:'200px'}}
-                        label="Search Data"
-                        value={input}
-                        onChange={(e: any) => setInput(e.target.value)}
-                        InputProps={{
-                            endAdornment: input && (
-                                <IconButton
-                                    style={{ width: '40px' }}
-                                    onClick={() => setInput('')}
-                                    edge="end"
-                                >
-                                    <ClearIcon />
-                                </IconButton>
-                            ),
-                        }}
-                    />
+                        <TextField
+                            style={{ maxWidth: '200px' }}
+                            label="Search Data"
+                            type='text'
+                            value={input}
+                            onChange={(e: any) => setInput(e.target.value)}
+                            InputProps={{
+                                endAdornment: input && (
+                                    <IconButton
+                                        style={{ width: '40px' }}
+                                        onClick={() => setInput('')}
+                                        edge="end"
+                                    >
+                                        <ClearIcon />
+                                    </IconButton>
+                                ),
+                            }}
+                        />
                     </Slide>
                 )}
                 {!input && (
                     <>
-                        <IconButton type='submit' style={{ width: '40px' }}
+                        <IconButton type='submit' style={{ margin: '2px', padding: '3px', width: '40px' }}
                             onClick={() => { setInput(''); setToggleInput(!toogleInput) }}><SearchIcon />
                         </IconButton>
                         <IconButton onClick={() => { exportToExcel(datas, "Employee List") }} style={{ width: '40px' }}>
                             <GetApp />
+                        </IconButton>
+                        <IconButton style={{ width: '40px' }}>
+                            <input
+                                type="file"
+                                accept=".xlsx, .xls"
+                                id="fileInput"
+                                style={{ display: 'none' }}
+                                onChange={handleImportFile}
+                            />
+                            <label htmlFor="fileInput">
+                                <IconButton component="span">
+                                    <CloudUploadOutlined />
+                                </IconButton>
+                            </label>
                         </IconButton>
                     </>
                 )

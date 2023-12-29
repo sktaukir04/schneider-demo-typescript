@@ -11,6 +11,7 @@ import EmpDetails from './components/Listing/EmpDetails'
 import EditDEtails from './components/Listing/EditDEtails';
 import SuccessPage from './components/Register/Success';
 import Listing1 from './components/Register/Listing1';
+import ImportedData from './components/Listing/ImportedData';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/details/:id' element={<EmpDetails />} />
         <Route path='/edit/:id' element={<EditDEtails />} />
         <Route path='/success' element={<SuccessPage />} />
+        <Route path='/importedData' element={<ImportedData />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </div>

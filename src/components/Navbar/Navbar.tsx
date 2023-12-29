@@ -4,6 +4,7 @@ import { multiStepContext } from '../Register/StepContext';
 import { Button, IconButton, Menu, MenuItem, Popover, Typography } from '@material-ui/core';
 import { Link, useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const Navbar: React.FC = () => {
   const { currentUser, setCurrentUser, setIsLoggedIn, isLoggedIn } = useContext(multiStepContext);
@@ -73,11 +74,11 @@ const Navbar: React.FC = () => {
                     setIsLoggedIn(false);
                     navigate('/');
                     sessionStorage.removeItem("userData");
-                  }}>Logout</MenuItem>
+                  }}>Logout  &nbsp; <ExitToAppIcon /></MenuItem>
               </Popover>
             </div>
           ) : (
-            <div><Link style={{textDecoration:'none'}} to={'/'}><Typography style={{marginRight:'20px'}}>Please Log In </Typography></Link></div>
+            <div ><Link style={{ textDecoration: 'none' }} to={'/'}><Typography style={{ marginRight: '20px' }}>Please Log In </Typography></Link></div>
           )
         }
       </div>

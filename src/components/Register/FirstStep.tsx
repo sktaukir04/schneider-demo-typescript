@@ -14,10 +14,11 @@ const FirstStep = () => {
     <div className='app-header'>
       <div style={{ width: '70%' }}>
         <TextField
-          error={isError}
+          error={typeof userData?.firstname === 'number'}
           label="First Name"
           fullWidth={true}
           value={userData?.firstname}
+          helperText={typeof userData?.firstname === 'number' ? "Invalid firstname" : ""}
           required
           onChange={(e: any) => handleInputChange(e)}
           margin='normal'
@@ -52,13 +53,14 @@ const FirstStep = () => {
         />
       </div>
       <div style={{ width: '70%' }}>
-        <Button variant='contained' onClick={() => {
-          if (typeof userData?.firstname === 'number') {
-            alert("Enter data to proceed")
-          } else {
+        <Button variant='contained'
+          disabled={!userData?.firstname || !userData?.lastname || !userData?.contact}
+          onClick={() => {
             setCurrentStep(2);
           }
-        }} color='primary'>
+          }
+
+          color='primary'>
           Next
         </Button>
       </div>
