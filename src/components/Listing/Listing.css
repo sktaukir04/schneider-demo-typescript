@@ -101,8 +101,8 @@
 
 .cancelModal {
     position: absolute;
-    right: 15px;
-    top: 5px;
+    right: -10px;
+    top: -10px;
     font-weight: bolder;
     cursor: pointer;
     caret-color: green;

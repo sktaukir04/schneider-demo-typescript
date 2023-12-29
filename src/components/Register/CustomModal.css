@@ -19,7 +19,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     margin: auto;
     height: fit-content;
     width: 800px !important;
@@ -49,4 +49,14 @@
     padding: 3px !important;
     backdrop-filter: none !important;
     opacity: 1;
+}
+.modal_text_fields{
+    border: 1px solid black !important;
+}
+.modal_text_fields input{
+    outline: 1px solid gray !important;
+    color: black;
+}
+.modal_text_fields .cancelModal{
+    margin: 10px;
 }
