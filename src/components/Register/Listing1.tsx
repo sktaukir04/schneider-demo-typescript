@@ -1,28 +1,31 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-import { DataGrid, GridColDef } from '@material-ui/data-grid';
+import { DataGrid, GridColDef, GridRowClassNameParams } from '@mui/x-data-grid';
+
+
 import '../Listing/Listing.css'
 import { useNavigate } from 'react-router-dom';
-import { IconButton, TextField, Slide } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import ClearIcon from '@material-ui/icons/Clear';
+import { IconButton, TextField, Slide, Box } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/Search';
 import { multiStepContext } from './StepContext';
 import CustomModal from './CustomModal';
-import { CloudUploadOutlined, GetApp } from '@material-ui/icons';
+import { CloudUploadOutlined, GetApp, Height } from '@mui/icons-material';
 import * as XLSX from 'xlsx';
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/material';
+// import { makeStyles } from '@mui/system/styles';
 
 
 type Props = {}
 
-const useStyles = makeStyles((theme: any) => ({
-    dataListContainer: {
-        height: '70vh',
-        margin: theme.spacing(2),
-        overflowX: 'hidden',
-        overflowY: 'scroll'
-    },
-}));
+// const useStyles = makeStyles((theme: any) => ({
+//     dataListContainer: {
+//         height: '70vh',
+//         margin: theme.spacing(2),
+//         overflowX: 'hidden',
+//         overflowY: 'scroll'
+//     },
+// }));
 
 const Listing1 = (props: Props) => {
     const navigate = useNavigate()
@@ -32,11 +35,10 @@ const Listing1 = (props: Props) => {
     const [toogleInput, setToggleInput] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState<any[]>([]);
-    const classes = useStyles()
 
 
 
-    const { setCurrentUser, modalData,deleteData, setModalData } = useContext(multiStepContext);
+    const { setCurrentUser, modalData, deleteData, setModalData } = useContext(multiStepContext);
     const fetchData = async () => {
         const { data } = await axios.get(`http://localhost:3001/contacts`);
         setData(data)
@@ -65,16 +67,26 @@ const Listing1 = (props: Props) => {
             (value) => typeof value === 'string' && value.toLowerCase().includes(input.toLowerCase())
         )
     );
-     const columns: GridColDef[] = datas.length > 0 ? [
-        { field: 'id', headerName: 'ID', width: 70 },
-        ...Object.keys(datas[0])
-            .filter((key) => key !== 'ID' && key !== 'password')
-            .map((key) => ({
-                field: key,
-                headerName: key.toUpperCase(),
-                flex: 1,
-            })),
-    ] : [];
+
+    const columns: GridColDef[] = datas.length > 0
+        ? [
+            {
+                field: 'id',
+                headerName: 'ID',
+                width: 200,
+            },
+            ...Object.keys(datas[0])
+                .filter((key) => key !== 'ID' && key !== 'password' && key !== 'id')
+                .map((key) => ({
+                    field: key,
+                    headerName: key.toUpperCase(),
+                    flex: 1,
+                })),
+        ]
+        : [];
+
+
+
 
 
     const handleCellClick = (params: any) => {
@@ -86,11 +98,13 @@ const Listing1 = (props: Props) => {
 
     };
 
-    const getRowClassName = (params: any, index: any) => {
-        const baseClassName = params.rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
-        const additionalClassName = index && index % 2 === 0 ? 'green-background' : '';
+    const getRowClassName = (params: any) => {
+        const rowIndex = params.id && params.id;
+        const baseClassName = rowIndex % 2 === 0 ? 'even-row' : 'odd-row';
+        const additionalClassName = rowIndex && rowIndex % 2 === 0 ? 'green-background' : '';
         return `${baseClassName} ${additionalClassName}`;
     };
+
 
 
     const getRowId = (row: any) => row.id;
@@ -104,6 +118,8 @@ const Listing1 = (props: Props) => {
             XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
             XLSX.writeFile(wb, `${fileName}.xlsx`);
         } else {
+            console.log("Confirm to download first");
+
             //   ws = XLSX.utils.json_to_sheet(data)
         }
 
@@ -119,19 +135,18 @@ const Listing1 = (props: Props) => {
                 const workBook = XLSX.read(data, { type: 'binary' });
                 const sheetName = workBook.SheetNames[0];
                 const worksheet = workBook.Sheets[sheetName];
-                const jsonData = XLSX.utils.sheet_to_json(worksheet);                
-                navigate('/importedData', { state: { data: jsonData,events:file} });
+                const jsonData = XLSX.utils.sheet_to_json(worksheet);
+                navigate('/importedData', { state: { data: jsonData, events: file } });
             };
-    
+
             reader.readAsBinaryString(file);
         }
     };
-    
-    const handleMultiSelect = (rows:any)=>{
-        setSelectedRows(rows);
-        console.log(selectedRows);
-        deleteData(rows)
-    }
+
+    const handleMultiSelect = (params: any) => {
+        setSelectedRows(params.selectionModel);
+    };
+
 
     return (
         <>
@@ -187,26 +202,25 @@ const Listing1 = (props: Props) => {
 
             <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen} modalData={modalData} setModalData={setModalData} />
 
-            <div className={`newList ${classes.dataListContainer}`} style={{ height: '400' }} >
+            <Box className={`newList`} sx={{ m: '5px', height: '80vh', width: '99vw' }} >
+
                 <DataGrid
                     rows={filteredDatas}
-                    onCellClick={handleCellClick}
                     columns={columns}
-                    autoPageSize
                     getRowClassName={getRowClassName}
-                    getRowId={getRowId}
-                    autoHeight
-                    pageSize={pageSize}
-                    headerHeight={50}
-                    onSelectionModelChange={handleMultiSelect}
-                    checkboxSelection
-                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                    rowsPerPageOptions={[5, 10, 15, 20]}
-                    pagination
-                    disableSelectionOnClick
-              
+                    initialState={{
+                        pagination: {
+                            paginationModel: {
+                                pageSize: 5,
+                            },
+                        },
+                    }}
+                    onCellClick={handleCellClick}
+                    pageSizeOptions={[5, 10, 20]}
+                    // checkboxSelection
+                    disableRowSelectionOnClick
                 />
-            </div>
+            </Box>
         </>
     )
 }

@@ -2,27 +2,25 @@ import React, { useContext, useEffect, useState } from 'react'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { multiStepContext } from '../Register/StepContext';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
-import CloseIcon from '@material-ui/icons/Close';
-interface Data{
-  email : string;
-  password : string;
+import { Button, IconButton, Snackbar } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+interface Data {
+  email: string;
+  password: string;
 }
 
 const Login = () => {
 
   const [data, setData] = useState<Data>({
-    email : '',
-    password : ''
+    email: '',
+    password: ''
   })
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('')
   const [datas, setDatas] = useState([]);
 
-  const { setIsLoggedIn,setUserData,setCurrentStep } = useContext(multiStepContext);
+  const { setIsLoggedIn, setUserData, setCurrentStep } = useContext(multiStepContext);
 
   useEffect(() => {
     sessionStorage.clear();
@@ -60,7 +58,7 @@ const Login = () => {
         } else {
           console.log("Not Found");
         }
-      } catch (err:any) {
+      } catch (err: any) {
         console.error("Login Failed due to - ", err.message);
       }
     }

@@ -1,11 +1,11 @@
-import { Button, ButtonGroup, Paper, TextField } from '@material-ui/core';
+import { Button, ButtonGroup, Paper, TextField } from '@mui/material';
 import React, { useContext, useState } from 'react'
 import Modal from 'react-modal'
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import './CustomModal.css'
 import { multiStepContext } from './StepContext';
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 type Props = {
   modalOpen: boolean,
   setModalOpen: any,
@@ -22,13 +22,13 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
 
 
   return (
-    <div className='modal-container'>
+    <div className='modal-container' >
       <Modal isOpen={modalOpen} className={`custom-modal ${deleteClass ? 'deleteClass' : ''} `}
         onRequestClose={() => setModalOpen(false)}
         ariaHideApp={false}
         contentLabel="Custom Modal">
         <h3>Data for <span style={{ color: 'red' }}>{modalData?.id}</span></h3>
-        <div className={`modal_text_fields ${deleteClass ? 'deleteClass' : ''}`}>
+        <div className={`modal_text_fields ${deleteClass ? 'deleteClass' : ''}`} >
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <span style={{ textAlign: 'left' }}>
               {isEditable && "Edit the fields"}
@@ -36,14 +36,14 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
             <span className='cancelModal' onClick={() => setModalOpen(false)}>&times;</span>
           </div>
 
-          <TextField className="filled-basic" value={modalData?.firstname} disabled={!isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, firstname: e.target.value }))} label="First Name" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.lastname} disabled={!isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, lastname: e.target.value }))} label="Last Name" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.email} disabled={!isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, email: e.target.value }))} label="Email" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.country} disabled={!isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, country: e.target.value }))} label="Country" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.city} disabled={!isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, city: e.target.value }))} label="City" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.landmark} disabled={!isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, landmark: e.target.value }))} label="Landmark" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.pincode} disabled={!isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, pincode: e.target.value }))} label="Pincode" variant="filled" />
-          <TextField className="filled-basic" value={modalData?.contact} disabled={!isEditable} onChange={(e) => setModalData((prev: any) => ({ ...prev, contact: e.target.value }))} label="Contact" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.firstname} InputProps={{ readOnly: !isEditable }} onChange={(e) => setModalData((prev: any) => ({ ...prev, firstname: e.target.value }))} label="First Name" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.lastname} InputProps={{ readOnly: !isEditable }} onChange={(e) => setModalData((prev: any) => ({ ...prev, lastname: e.target.value }))} label="Last Name" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.email} InputProps={{ readOnly: !isEditable }} onChange={(e) => setModalData((prev: any) => ({ ...prev, email: e.target.value }))} label="Email" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.country} InputProps={{ readOnly: !isEditable }} onChange={(e) => setModalData((prev: any) => ({ ...prev, country: e.target.value }))} label="Country" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.city} InputProps={{ readOnly: !isEditable }} onChange={(e) => setModalData((prev: any) => ({ ...prev, city: e.target.value }))} label="City" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.landmark} InputProps={{ readOnly: !isEditable }} onChange={(e) => setModalData((prev: any) => ({ ...prev, landmark: e.target.value }))} label="Landmark" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.pincode} InputProps={{ readOnly: !isEditable }} onChange={(e) => setModalData((prev: any) => ({ ...prev, pincode: e.target.value }))} label="Pincode" variant="filled" />
+          <TextField className="filled-basic" value={modalData?.contact} InputProps={{ readOnly: !isEditable }} onChange={(e) => setModalData((prev: any) => ({ ...prev, contact: e.target.value }))} label="Contact" variant="filled" />
 
         </div>
         <div className="actions" style={{ display: 'flex', flexDirection: 'row', gap: '10px', width: 'fit-content', padding: '10px', margin: '10px' }}>
@@ -66,7 +66,7 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
             isEditable ? (
               <Button onClick={() => setIsEditable(!isEditable)}>Cancel</Button>
             ) : (
-              <Button endIcon={<DeleteIcon />} variant="contained" color="secondary" onClick={() => {
+              <Button endIcon={<DeleteIcon />} variant="contained" style={{background:'red'}} color="secondary" onClick={() => {
                 console.log(modalData);
                 setDeleteClass(!deleteClass);
                 deleteData(modalData?.id)

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Snackbar } from '@material-ui/core';
+import { Snackbar } from '@mui/material';
 
 interface UserData {
   firstname: string;
@@ -75,7 +75,7 @@ const StepContext = (props: HeadingProp) => {
       fetch(`http://localhost:3001/contacts/${id}`, {
         method: 'DELETE',
       })
-        .then((data) => alert('Removed Successfully'+data))
+        .then((data) => alert('Removed Successfully'))
         .catch((err) => {
           console.log(err);
         });

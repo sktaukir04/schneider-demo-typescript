@@ -101,9 +101,11 @@
 
 .cancelModal {
     position: absolute;
-    right: -10px;
-    top: -10px;
+    top: 1px;
+    right: 1px;
     font-weight: bolder;
+    transform: translate(320px,-100px);
+    color: black;
     cursor: pointer;
     caret-color: green;
     font-size: 30px;
@@ -112,7 +114,7 @@
 
 .cancelModal:hover {
     color: red;
-    transform: scale(1.5) rotateY(180deg);
+    /* transform: scale(1.5) rotateY(180deg); */
 }
 
 @media screen and (max-width:700px) {
@@ -121,33 +123,26 @@
     }
 }
 
+input{
+    background: white !important;
+}
 
-/* .newList {
-    height: 70vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  } */
-  
-  /* .MuiDataGrid-root {
-    flex-grow: 1;
-  }
-  
-  .MuiDataGrid-main {
-    height: calc(100% - 48px); 
-  }
-  
-  .MuiDataGrid-footerContainer {
-    position: sticky;
-    bottom: 0;
-    background-color: white;
-  } */
-  
-  
-  /* .green-background {
-    background-color: lightgreen;
-  } */
-  
-  .MuiDataGrid-columnHeaderWrapper{
-    background-color: lightgreen;
-  }
+.MuiDataGrid-columnHeaders {
+    background-color: lightgreen !important;
+}
+
+.MuiDataGrid-footerContainer {
+    display: flex !important;
+}
+
+.MuiDataGrid-footerContainer .MuiTablePagination-actions {
+    display: flex !important;
+}
+
+.MuiTablePagination-spacer {
+    display: none !important;
+}
+
+.MuiToolbar-gutters {
+    width: 500px !important;
+}

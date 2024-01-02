@@ -1,9 +1,8 @@
-import { Typography } from '@material-ui/core';
-import { DataGrid, GridColDef } from '@material-ui/data-grid';
+import { Typography } from '@mui/material';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import CancelIcon from '@material-ui/icons/Cancel';
-
+import ClearIcon from '@mui/icons-material/Clear';
 type Props = {}
 
 const ImportedData = (props: Props) => {
@@ -42,20 +41,22 @@ const ImportedData = (props: Props) => {
                 <Typography style={{ margin: '10px', textAlign: 'center' }}>
                     Imported Data from File: <span title={JSON.stringify(fileDetails)} style={{ color: 'red', textDecoration: 'underline' }}>{file?.name}</span>
                 </Typography>
-                <span style={{ cursor: 'pointer' }} onClick={() => { navigate('/listing') }}><CancelIcon /></span>
+                <span style={{ cursor: 'pointer' }} onClick={() => { navigate('/listing') }}><ClearIcon /></span>
             </div>
-            <DataGrid
-                rows={uploadData}
-                columns={columns}
-                autoPageSize
-                autoHeight
-                pageSize={pageSize}
-                headerHeight={50}
-                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                rowsPerPageOptions={[5, 10, 15, 20]}
-                pagination
-                disableSelectionOnClick
-            />
+                <DataGrid
+                    rows={uploadData}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: {
+                                pageSize: 5,
+                            },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10, 20]}
+                    // checkboxSelection
+                    disableRowSelectionOnClick
+                />
         </div>
     )
 }

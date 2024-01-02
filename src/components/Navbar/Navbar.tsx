@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import './Navbar.css';
 import { multiStepContext } from '../Register/StepContext';
-import { Button, IconButton, Menu, MenuItem, Popover, Typography } from '@material-ui/core';
+import { Button, IconButton, Menu, MenuItem, Popover, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 const Navbar: React.FC = () => {
   const { currentUser, setCurrentUser, setIsLoggedIn, isLoggedIn } = useContext(multiStepContext);
   const navigate = useNavigate();

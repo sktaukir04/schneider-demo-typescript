@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
-import { Stepper, StepLabel, Step, Paper } from '@material-ui/core';
+import { Stepper, StepLabel, Step, Paper } from '@mui/material';
 import { multiStepContext } from './StepContext';
 import './Register.css'
 import { Link } from 'react-router-dom';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { ArrowBack } from '@mui/icons-material';
 const Register = () => {
     const { currentStep } = useContext(multiStepContext);
 
@@ -27,7 +27,7 @@ const Register = () => {
         <div className='app-header'>
             <Paper elevation={5} style={{ width: "800px", marginBottom: '20px', marginTop: '20px', padding: '20px' }}>
                 <Paper style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-                    <Link to={'/'} style={{ textDecoration: 'none' }}><ArrowBackIcon /> </Link>
+                    <Link to={'/'} style={{ textDecoration: 'none' }}><ArrowBack /> </Link>
                     <h3 style={{ color: 'green', textAlign: 'center', margin: 'auto', textDecoration: 'underline' }}>Registration Form</h3>
                 </Paper>
                 <div className="center-stepper" >

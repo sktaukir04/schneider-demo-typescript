@@ -1,5 +1,5 @@
 import React, { useContext, ChangeEvent } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 import { multiStepContext } from './StepContext';
 
 const FirstStep = () => {

@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import './Register.css'
 import { useEffect } from 'react'

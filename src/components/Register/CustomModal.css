@@ -62,5 +62,6 @@
 }
 .deleteClass{
     border: 2px solid red !important;
-    box-shadow: 5px 5px 5px red !important;
+    box-shadow: 0px 0px 1px red !important;
 }
+
