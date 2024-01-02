@@ -7,7 +7,7 @@ const SecondStep: React.FC = () => {
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
   const [emailError, setEmailError] = useState<boolean>(false);
   const [passwordError, setPasswordError] = useState(false)
-  const [isValidEmailFormat,setISValidEmailFormat]=useState(false);
+  const [isValidEmailFormat, setISValidEmailFormat] = useState(false);
 
 
 
@@ -19,6 +19,10 @@ const SecondStep: React.FC = () => {
 
   let emailTimeout: NodeJS.Timeout;
   const checkEmailExits = async (email: any) => {
+    if (!email) {
+      setEmailError(false);
+      setISValidEmailFormat(false)
+    }
     try {
       clearInterval(emailTimeout);
       if (!isValidFormat(email)) {
@@ -39,6 +43,10 @@ const SecondStep: React.FC = () => {
   };
 
   const isValidFormat = (email: string) => {
+    if (email.length === 0) {
+      setISValidEmailFormat(false);
+      return
+    }
     const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailFormat.test(email);
   }
@@ -47,6 +55,7 @@ const SecondStep: React.FC = () => {
     const isValidPassword = password.length > 8 && /^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]+$/.test(password);
     setPasswordError(!isValidPassword);
   };
+ 
 
 
   return (
@@ -70,10 +79,10 @@ const SecondStep: React.FC = () => {
             emailError
               ? "Email Already Exists"
               : isValidEmailFormat
-              ? "Invalid Email Format"
-              : ""
+                ? "Invalid Email Format"
+                : "Correct"
           }
-                  />
+        />
       </div>
       <div style={{ width: '70%' }}>
         <TextField

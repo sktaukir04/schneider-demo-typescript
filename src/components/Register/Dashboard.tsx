@@ -59,9 +59,9 @@ const Dashboard = (props: Props) => {
 
     useEffect(() => {
         setTimeout(() => {
-          setShowProgress(false)
+            setShowProgress(false)
         }, 400);
-      })
+    })
 
     const filteredDatas = datas.filter((data) =>
         Object.values(data).some(
@@ -158,11 +158,11 @@ const Dashboard = (props: Props) => {
 
     if (showProgress) {
         return (
-          <>
-            <LinearProgress style={{ color: 'gold', backgroundColor: 'green', height: '10px' }} variant='query' color='primary' />
-          </>
+            <>
+                <LinearProgress style={{ color: 'gold', backgroundColor: 'green', height: '10px' }} variant='query' color='primary' />
+            </>
         )
-      }
+    }
 
     return (
         <>
@@ -173,7 +173,7 @@ const Dashboard = (props: Props) => {
                     {toogleInput && (
                         <Slide direction='left' in={toogleInput} mountOnEnter unmountOnExit>
                             <TextField
-                            className='searchField'
+                                className='searchField'
                                 style={{ maxWidth: '200px' }}
                                 label="Search Data"
                                 type='text'
@@ -236,7 +236,7 @@ const Dashboard = (props: Props) => {
                             },
                         }}
                         onCellClick={handleCellClick}
-                        pageSizeOptions={[5, 10, 20,datas.length]}
+                        pageSizeOptions={[5, 10, 20, datas.length]}
                         // checkboxSelection
                         disableRowSelectionOnClick
                     />

@@ -503,6 +503,18 @@
       "city": "Bhopal",
       "landmark": "Birla Mandir",
       "pincode": "462011"
+    },
+    {
+      "id": 1704197435382,
+      "firstname": "Hitesh",
+      "lastname": "Pujari",
+      "contact": "9437957233",
+      "email": "hitesh.pujari@gmail.com",
+      "country": "India",
+      "password": "hitesh@1234",
+      "city": "Mumbai",
+      "landmark": "Wadala",
+      "pincode": "400031"
     }
   ]
 }
