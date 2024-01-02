@@ -12,22 +12,13 @@ import { multiStepContext } from './StepContext';
 import CustomModal from './CustomModal';
 import { CloudUploadOutlined, GetApp, Height } from '@mui/icons-material';
 import * as XLSX from 'xlsx';
-import makeStyles from '@mui/material';
-// import { makeStyles } from '@mui/system/styles';
 
 
 type Props = {}
 
-// const useStyles = makeStyles((theme: any) => ({
-//     dataListContainer: {
-//         height: '70vh',
-//         margin: theme.spacing(2),
-//         overflowX: 'hidden',
-//         overflowY: 'scroll'
-//     },
-// }));
 
-const Listing1 = (props: Props) => {
+
+const Dashboard = (props: Props) => {
     const navigate = useNavigate()
     const [datas, setData] = useState([]);
     const [pageSize, setPageSize] = React.useState<number>(5);
@@ -90,12 +81,17 @@ const Listing1 = (props: Props) => {
 
 
     const handleCellClick = (params: any) => {
-        const selectedId = params.row.id;
-        // navigate(`/details/${selectedId}`);
-        setModalOpen(true);
-        setModalData(params.row);
-        console.log(params.row);
-
+        const clickedFiled = params.field;
+        if (clickedFiled === '__check__') {
+            const selectedId = params.row.id;
+            handleMultiSelect(selectedId)
+            return
+        } else {
+            // navigate(`/details/${selectedId}`);
+            setModalOpen(true);
+            setModalData(params.row);
+            console.log(params.row);
+        }
     };
 
     const getRowClassName = (params: any) => {
@@ -144,7 +140,9 @@ const Listing1 = (props: Props) => {
     };
 
     const handleMultiSelect = (params: any) => {
-        setSelectedRows(params.selectionModel);
+        setSelectedRows((prev: any) => {
+            return [...prev, params]
+        })
     };
 
 
@@ -217,7 +215,7 @@ const Listing1 = (props: Props) => {
                     }}
                     onCellClick={handleCellClick}
                     pageSizeOptions={[5, 10, 20]}
-                    // checkboxSelection
+                    checkboxSelection
                     disableRowSelectionOnClick
                 />
             </Box>
@@ -226,4 +224,4 @@ const Listing1 = (props: Props) => {
 }
 
 
-export default Listing1
+export default Dashboard

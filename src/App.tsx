@@ -10,7 +10,7 @@ import Error from './components/Error Page/Error';
 // import EmpDetails from './components/Listing/EmpDetails'
 // import EditDEtails from './components/Listing/EditDEtails';
 import SuccessPage from './components/Register/Success';
-import Listing1 from './components/Register/Listing1';
+import Dashboard from './components/Register/Dashboard';
 import ImportedData from './components/Listing/ImportedData';
 
 
@@ -21,9 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/listing' element={<Listing1 />} />
-        {/* <Route path='/details/:id' element={<EmpDetails />} />
-        <Route path='/edit/:id' element={<EditDEtails />} /> */}
+        <Route path='/listing' element={<Dashboard />} />
         <Route path='/success' element={<SuccessPage />} />
         <Route path='/importedData' element={<ImportedData />} />
         <Route path='*' element={<Error />} />

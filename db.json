@@ -193,18 +193,6 @@
       "id": 1703565890651
     },
     {
-      "firstname": "Rahul",
-      "lastname": "Gupta",
-      "email": "rahul.gupta@example.com",
-      "country": "India",
-      "city": "Jaipur",
-      "landmark": "Hawa Mahal",
-      "pincode": "302002",
-      "contact": "91-141-1234-5678",
-      "password": "rahul456",
-      "id": 1703565890653
-    },
-    {
       "id": 1703669169929,
       "firstname": "prakash",
       "lastname": "sewani",

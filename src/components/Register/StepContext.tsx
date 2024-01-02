@@ -10,7 +10,7 @@ interface UserData {
   country: string;
   city: string;
   landmark: string;
-  pincode: number|string;
+  pincode: number | string;
   contact: string;
   password: string;
 }
@@ -25,16 +25,16 @@ interface MultiStepContext {
   editData: any;
   deleteData: (id: number) => void;
   submitData: () => any;
-  isError:boolean;
-  setIsError:any;
+  isError: boolean;
+  setIsError: any;
   isLoggedIn: boolean;
   setIsLoggedIn: any;
-  currentUser:any,
-  setCurrentUser:any
+  currentUser: any,
+  setCurrentUser: any
   authData: any;
   setAuthData: () => any;
-  modalData:any;
-  setModalData:any;
+  modalData: any;
+  setModalData: any;
 }
 type HeadingProp = {
   children: React.ReactNode;
@@ -50,9 +50,9 @@ const StepContext = (props: HeadingProp) => {
   const [isLoggedIn, setIsLoggedIn] = useState(Boolean);
   const [authData, setAUthData] = useState<UserData[]>();
   const [allData, setAllDAta] = useState([])
-  const [isError,setIsError]=useState(false);
-  const [currentUser,setCurrentUser]=useState<UserData>();
-  const [modalData,setModalData]=useState({});
+  const [isError, setIsError] = useState(false);
+  const [currentUser, setCurrentUser] = useState<UserData>();
+  const [modalData, setModalData] = useState({});
 
   const editData = (id: number) => {
     // console.log(userData);     
@@ -79,8 +79,8 @@ const StepContext = (props: HeadingProp) => {
         .catch((err) => {
           console.log(err);
         });
-          window.location.reload();
-          navigate('/listing');
+      window.location.reload();
+      navigate('/listing');
     } else {
       // Do nothing on cancel
     }
@@ -100,20 +100,20 @@ const StepContext = (props: HeadingProp) => {
         fetch('http://localhost:3001/contacts')
           .then((res) => res.json()).then((datas) => {
             datas.forEach((data: any) => {
-              if (data.email===userData.email) {
+              if (data.email === userData.email) {
                 alreadyExists = true;
                 alert("Email Already Exists")
               } else {
                 sessionStorage.setItem('email', userData.email);
                 if (!alreadyExists) {
                   console.log(alreadyExists);
-                  axios.post('http://localhost:3001/contacts', userData).catch((err)=>console.log("You have a new Error : "+err)
+                  axios.post('http://localhost:3001/contacts', userData).catch((err) => console.log("You have a new Error : " + err)
                   );
                   sessionStorage.setItem('email', userData.email)
                   setUserData({ firstname: '', lastname: '', email: '', country: '', city: '', landmark: '', pincode: '', contact: '', password: '' });
                   setCurrentStep(1);
                   navigate("/success");
-                  <Snackbar open={true}/>
+                  <Snackbar open={true} />
                   // window.location.reload();
                 }
               }

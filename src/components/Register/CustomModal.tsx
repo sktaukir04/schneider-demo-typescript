@@ -66,7 +66,7 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
             isEditable ? (
               <Button onClick={() => setIsEditable(!isEditable)}>Cancel</Button>
             ) : (
-              <Button endIcon={<DeleteIcon />} variant="contained" style={{background:'red'}} color="secondary" onClick={() => {
+              <Button endIcon={<DeleteIcon />} variant="contained" style={{ background: 'red' }} color="secondary" onClick={() => {
                 console.log(modalData);
                 setDeleteClass(!deleteClass);
                 deleteData(modalData?.id)
