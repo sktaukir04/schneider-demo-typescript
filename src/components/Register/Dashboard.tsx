@@ -173,6 +173,7 @@ const Dashboard = (props: Props) => {
                     {toogleInput && (
                         <Slide direction='left' in={toogleInput} mountOnEnter unmountOnExit>
                             <TextField
+                            className='searchField'
                                 style={{ maxWidth: '200px' }}
                                 label="Search Data"
                                 type='text'
@@ -194,13 +195,13 @@ const Dashboard = (props: Props) => {
                     )}
                     {!input && (
                         <>
-                            <IconButton type='submit' style={{ margin: '2px', padding: '3px', width: '40px' }}
+                            <IconButton title='Search' type='submit' style={{ margin: '2px', padding: '3px', width: '40px' }}
                                 onClick={() => { setInput(''); setToggleInput(!toogleInput) }}><SearchIcon />
                             </IconButton>
-                            <IconButton onClick={() => { exportToExcel(datas, "Employee List") }} style={{ width: '40px' }}>
+                            <IconButton title='Download Data' onClick={() => { exportToExcel(datas, "Employee List") }} style={{ width: '40px' }}>
                                 <GetApp />
                             </IconButton>
-                            <IconButton style={{ width: '40px' }}>
+                            <IconButton title='Upload File' style={{ width: '40px' }}>
                                 <input
                                     type="file"
                                     accept=".xlsx, .xls"

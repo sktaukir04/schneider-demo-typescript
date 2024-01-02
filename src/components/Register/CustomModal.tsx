@@ -68,7 +68,7 @@ const CustomModal = ({ modalOpen, setModalOpen, modalData, setModalData }: Props
             ) : (
               <Button endIcon={<DeleteIcon />} variant="contained" style={{ background: 'red' }} color="secondary" onClick={() => {
                 console.log(modalData);
-                setDeleteClass(!deleteClass);
+                // setDeleteClass(!deleteClass);
                 deleteData(modalData?.id)
               }}>
                 Delete
