@@ -14,7 +14,7 @@ const ImportedData = (props: Props) => {
     console.log(file)
 
     const columns: GridColDef[] = uploadData.length > 0 ? [
-        { field: 'id', headerName: 'ID', width: 70 },
+   
         ...Object.keys(uploadData[0])
             .filter((key) => key !== 'ID' && key !== 'password')
             .map((key) => ({

@@ -84,7 +84,8 @@ const Dashboard = (props: Props) => {
         const clickedFiled = params.field;
         if (clickedFiled === '__check__') {
             const selectedId = params.row.id;
-            handleMultiSelect(selectedId)
+            console.log(selectedId);
+            // handleMultiSelect(selectedId)
             return
         } else {
             // navigate(`/details/${selectedId}`);
@@ -148,77 +149,81 @@ const Dashboard = (props: Props) => {
 
     return (
         <>
-            <div className="input" style={{ width: '90vw', margin: '10px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '2px' }}>
-                {toogleInput && (
-                    <Slide direction='left' in={toogleInput} mountOnEnter unmountOnExit>
-                        <TextField
-                            style={{ maxWidth: '200px' }}
-                            label="Search Data"
-                            type='text'
-                            value={input}
-                            onChange={(e: any) => setInput(e.target.value)}
-                            InputProps={{
-                                endAdornment: input && (
-                                    <IconButton
-                                        style={{ width: '40px' }}
-                                        onClick={() => setInput('')}
-                                        edge="end"
-                                    >
-                                        <ClearIcon />
-                                    </IconButton>
-                                ),
-                            }}
-                        />
-                    </Slide>
-                )}
-                {!input && (
-                    <>
-                        <IconButton type='submit' style={{ margin: '2px', padding: '3px', width: '40px' }}
-                            onClick={() => { setInput(''); setToggleInput(!toogleInput) }}><SearchIcon />
-                        </IconButton>
-                        <IconButton onClick={() => { exportToExcel(datas, "Employee List") }} style={{ width: '40px' }}>
-                            <GetApp />
-                        </IconButton>
-                        <IconButton style={{ width: '40px' }}>
-                            <input
-                                type="file"
-                                accept=".xlsx, .xls"
-                                id="fileInput"
-                                style={{ display: 'none' }}
-                                onChange={handleImportFile}
+            <div className="dashboard-container">
+
+
+                <div className="input" style={{ width: '90vw', margin: '10px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', padding: '2px' }}>
+                    {toogleInput && (
+                        <Slide direction='left' in={toogleInput} mountOnEnter unmountOnExit>
+                            <TextField
+                                style={{ maxWidth: '200px' }}
+                                label="Search Data"
+                                type='text'
+                                value={input}
+                                onChange={(e: any) => setInput(e.target.value)}
+                                InputProps={{
+                                    endAdornment: input && (
+                                        <IconButton
+                                            style={{ width: '40px' }}
+                                            onClick={() => setInput('')}
+                                            edge="end"
+                                        >
+                                            <ClearIcon />
+                                        </IconButton>
+                                    ),
+                                }}
                             />
-                            <label htmlFor="fileInput">
-                                <IconButton component="span">
-                                    <CloudUploadOutlined />
-                                </IconButton>
-                            </label>
-                        </IconButton>
-                    </>
-                )
-                }
-            </div>
+                        </Slide>
+                    )}
+                    {!input && (
+                        <>
+                            <IconButton type='submit' style={{ margin: '2px', padding: '3px', width: '40px' }}
+                                onClick={() => { setInput(''); setToggleInput(!toogleInput) }}><SearchIcon />
+                            </IconButton>
+                            <IconButton onClick={() => { exportToExcel(datas, "Employee List") }} style={{ width: '40px' }}>
+                                <GetApp />
+                            </IconButton>
+                            <IconButton style={{ width: '40px' }}>
+                                <input
+                                    type="file"
+                                    accept=".xlsx, .xls"
+                                    id="fileInput"
+                                    style={{ display: 'none' }}
+                                    onChange={handleImportFile}
+                                />
+                                <label htmlFor="fileInput">
+                                    <IconButton component="span">
+                                        <CloudUploadOutlined />
+                                    </IconButton>
+                                </label>
+                            </IconButton>
+                        </>
+                    )
+                    }
+                </div>
 
-            <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen} modalData={modalData} setModalData={setModalData} />
+                <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen} modalData={modalData} setModalData={setModalData} />
 
-            <Box className={`newList`} sx={{ m: '5px', height: '80vh', width: '99vw' }} >
+                <Box className={`newList`} sx={{ m: '5px', height: '80vh', width: '99vw' }} >
 
-                <DataGrid
-                    rows={filteredDatas}
-                    columns={columns}
-                    getRowClassName={getRowClassName}
-                    initialState={{
-                        pagination: {
-                            paginationModel: {
-                                pageSize: 5,
+                    <DataGrid
+                        rows={filteredDatas}
+                        columns={columns}
+                        getRowClassName={getRowClassName}
+                        initialState={{
+                            pagination: {
+                                paginationModel: {
+                                    pageSize: 5,
+                                },
                             },
-                        },
-                    }}
-                    onCellClick={handleCellClick}
-                    pageSizeOptions={[5, 10, 20]}
-                    checkboxSelection
-                    disableRowSelectionOnClick
-                />
-            </Box>
+                        }}
+                        onCellClick={handleCellClick}
+                        pageSizeOptions={[5, 10, 20,datas.length]}
+                        // checkboxSelection
+                        disableRowSelectionOnClick
+                    />
+                </Box>
+            </div>
         </>
     )
 }

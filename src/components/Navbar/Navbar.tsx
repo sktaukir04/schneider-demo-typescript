@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
 
         {
           isLoggedIn ? (
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center' }} title={currentUser?.firstname +" "+ currentUser?.lastname}>
 
               <Typography style={{ whiteSpace: 'nowrap', color: 'green', fontWeight: 'bold' }}> Welcome {currentUser?.firstname}</Typography>
               <IconButton style={{ width: '40px' }} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
