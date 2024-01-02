@@ -12,6 +12,8 @@ import { multiStepContext } from './StepContext';
 import CustomModal from './CustomModal';
 import { CloudUploadOutlined, GetApp, Height } from '@mui/icons-material';
 import * as XLSX from 'xlsx';
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 
 type Props = {}
@@ -26,6 +28,8 @@ const Dashboard = (props: Props) => {
     const [toogleInput, setToggleInput] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedRows, setSelectedRows] = useState<any[]>([]);
+    const [showProgress, setShowProgress] = useState(true);
+
 
 
 
@@ -34,6 +38,7 @@ const Dashboard = (props: Props) => {
         const { data } = await axios.get(`http://localhost:3001/contacts`);
         setData(data)
     }
+
 
     useEffect(() => {
         fetchData();
@@ -52,6 +57,11 @@ const Dashboard = (props: Props) => {
         }
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => {
+          setShowProgress(false)
+        }, 400);
+      })
 
     const filteredDatas = datas.filter((data) =>
         Object.values(data).some(
@@ -146,6 +156,13 @@ const Dashboard = (props: Props) => {
         })
     };
 
+    if (showProgress) {
+        return (
+          <>
+            <LinearProgress style={{ color: 'gold', backgroundColor: 'green', height: '10px' }} variant='query' color='primary' />
+          </>
+        )
+      }
 
     return (
         <>
@@ -213,7 +230,7 @@ const Dashboard = (props: Props) => {
                         initialState={{
                             pagination: {
                                 paginationModel: {
-                                    pageSize: 5,
+                                    pageSize: 10,
                                 },
                             },
                         }}

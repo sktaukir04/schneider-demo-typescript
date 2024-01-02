@@ -151,7 +151,7 @@ input{
 }
 
 .MuiDataGrid-virtualScrollerRenderZone >div:nth-child(even) {
-    background-color: rgb(233, 237, 233);
+    background-color: rgb(233, 233, 233);
 }
 .MuiDataGrid-virtualScrollerRenderZone>div:hover{
     background-color:transparent;

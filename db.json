@@ -493,18 +493,6 @@
       "pincode": "226002"
     },
     {
-      "id": 1703669169962,
-      "firstname": "Ria",
-      "lastname": "Sharma",
-      "contact": "8765901234",
-      "email": "ria.sharma@example.com",
-      "country": "India",
-      "password": "sharma456",
-      "city": "Jaipur",
-      "landmark": "Jawahar Circle",
-      "pincode": "302017"
-    },
-    {
       "id": 1703669169963,
       "firstname": "Rajat",
       "lastname": "Mishra",
